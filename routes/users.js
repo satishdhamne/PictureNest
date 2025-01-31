@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const plm = require("passport-local-mongoose");
 
+mongoose.connect("mongodb://127.0.0.1:27017/pin1db");
+
 const userSchema = mongoose.Schema({
   username: String,
   fullname: String,
@@ -8,14 +10,12 @@ const userSchema = mongoose.Schema({
   password: String,
   image: String,
   discription: String,
-  posts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "post",
-    },
-  ],
-  contact: Number,
-});
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "post"
+  }],
+  contact: Number
+})
 
 userSchema.plugin(plm);
 
